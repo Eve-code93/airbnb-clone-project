@@ -128,4 +128,73 @@ PUT /reviews/{review_id}/ — Edit a review
 
 DELETE /reviews/{review_id}/ — Remove a review
 
+🗄️ Database Design
+The Airbnb Clone project uses a relational database to model real-world entities and their relationships. Below is an overview of the key entities and their attributes:
+
+🔹 Users
+id (Primary Key): Unique identifier for each user
+
+username: User’s login name
+
+email: Email address (must be unique)
+
+password: Hashed password
+
+is_host: Boolean to distinguish hosts from guests
+
+🔹 Properties
+id (Primary Key): Unique identifier for each property
+
+owner_id (ForeignKey to Users): The host who owns the property
+
+title: Property name or listing title
+
+location: Geographic location/address
+
+price_per_night: Cost of booking per night
+
+🔹 Bookings
+id (Primary Key): Unique identifier for the booking
+
+user_id (ForeignKey to Users): Guest making the booking
+
+property_id (ForeignKey to Properties): Property being booked
+
+check_in: Start date of booking
+
+check_out: End date of booking
+
+🔹 Payments
+id (Primary Key): Unique identifier for the payment
+
+booking_id (ForeignKey to Bookings): Associated booking
+
+amount: Total amount paid
+
+payment_date: Timestamp of payment
+
+status: Payment status (e.g., Paid, Failed, Refunded)
+
+🔹 Reviews
+id (Primary Key): Unique identifier for each review
+
+user_id (ForeignKey to Users): Reviewer
+
+property_id (ForeignKey to Properties): Property being reviewed
+
+rating: Numerical rating (e.g., 1–5 stars)
+
+comment: Optional written feedback
+
+🔗 Entity Relationships
+A user can book multiple properties (one-to-many)
+
+A property can receive multiple bookings and reviews
+
+A booking has exactly one payment
+
+Only guests (non-hosts) can submit reviews
+
+
+
 
